@@ -14,7 +14,7 @@ abstract class Pizza {
   topping();
 }
 
-class PepperoniPizza implements Pizza {
+class PepperoniPizza extends Pizza {
   @override
   topping() {
     print("Topping : Pepperoni");
@@ -31,3 +31,4 @@ main() {
 
 
 ### Mixin
+> 공식문서 => "Mixin은 여러 클래스 계층에서 클래스 코드를 재사용하는 방법이다."

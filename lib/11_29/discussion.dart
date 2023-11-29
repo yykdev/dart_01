@@ -2,7 +2,7 @@ abstract class Pizza {
   topping();
 }
 
-class PepperoniPizza implements Pizza {
+class PepperoniPizza extends Pizza {
   @override
   topping() {
     print("Topping : Pepperoni");
