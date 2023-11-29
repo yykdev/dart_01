@@ -4,7 +4,7 @@
  */
 
 void main() {
-  String checkText = "racecar";
+  String checkText = "race1car";
 
   checkPalindrome(checkText);
 }
@@ -20,6 +20,10 @@ void checkPalindrome(String checkText) {
     var reverseOrder = target[target.length - 1 - i];
 
     result = order == reverseOrder;
+
+    if (!result) {
+      break;
+    }
   }
 
   print("'$checkText'는 ${result ? "회문 입니다." : "회문이 아닙니다."}");
