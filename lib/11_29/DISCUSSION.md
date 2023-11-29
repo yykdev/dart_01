@@ -43,6 +43,7 @@ mixin Fineapple {
   }
 }
 
+// 부모 클래스
 abstract class Pizza {
   topping();
 }
@@ -55,8 +56,24 @@ class PepperoniPizza extends Pizza with Fineapple {
   }
 }
 
+// 부모 클래스
+abstract class Menu with Fineapple {
+  @override
+  no();
+}
+
+class HwangDo extends Menu {
+  @override
+  void no() {
+    print("???");
+  }
+}
+
 main() {
   Pizza pepperoniPizza = PepperoniPizza();
   pepperoniPizza.topping();
+
+  HwangDo menu = HwangDo();
+  menu.no();
 }
 ```
