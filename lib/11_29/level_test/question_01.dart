@@ -4,9 +4,13 @@
  */
 
 void main() {
-  String checkPalindrome = "racecare";
+  String checkText = "racecar";
 
-  List<String> target = checkPalindrome.split("");
+  checkPalindrome(checkText);
+}
+
+void checkPalindrome(String checkText) {
+  List<String> target = checkText.split("");
 
   num test = target.length / 2;
   bool result = false;
@@ -18,5 +22,5 @@ void main() {
     result = order == reverseOrder;
   }
 
-  print("'$checkPalindrome'는 ${result ? "회문 입니다." : "회문이 아닙니다."}");
+  print("'$checkText'는 ${result ? "회문 입니다." : "회문이 아닙니다."}");
 }
