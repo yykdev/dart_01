@@ -18,6 +18,7 @@ int sum(List<int> target){
   for(int i = 0;i < target.length;i++) {
     int current = target[i];
     if ( current > first ) {
+      second = first;
       first = current;
     } else if ( current > second ) {
       second = current;
