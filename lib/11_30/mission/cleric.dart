@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Cleric {
   String name;
 
@@ -16,5 +18,20 @@ class Cleric {
       mp -= 5;
       hp = maxHp;
     }
+  }
+
+  void pray(int time) {
+    Random random = Random();
+    int charge = random.nextInt(time);
+
+    int temp = mp + charge;
+
+    if (temp >= maxMp) {
+      print("mp가 ${maxMp - mp} 회복 되었습니다.");
+    } else {
+      print("mp가 ${charge} 회복 되었습니다.");
+    }
+
+    mp = temp;
   }
 }

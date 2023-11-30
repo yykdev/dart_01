@@ -6,4 +6,9 @@ main() {
   cleric.selfAid();
   cleric.selfAid();
   cleric.selfAid();
+  cleric.pray(5);
+  cleric.pray(5);
+
+  print("-------------");
+  print("hp : ${cleric.hp} , mp : ${cleric.mp}");
 }
