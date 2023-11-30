@@ -1,5 +1,5 @@
 import 'cleric.dart';
 
 main() {
-  Cleric cleric = Cleric();
+  Cleric cleric = Cleric("이름");
 }
