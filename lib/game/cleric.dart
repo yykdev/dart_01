@@ -1,12 +1,12 @@
 import 'dart:math';
 
 class Cleric {
-  String name;
+  static final int maxHP = 50;
+  static final int maxMP = 10;
 
-  final int maxHp = 50;
-  final int maxMp = 10;
-  int hp = 50;
-  int mp = 10;
+  String name;
+  int hp = maxHP;
+  int mp = maxMP;
 
   Cleric(this.name);
 
@@ -14,9 +14,9 @@ class Cleric {
     if (mp < 5) {
       print("mp가 부족합니다.");
     } else {
-      print("hp가 ${maxHp - hp} 회복 되었습니다.");
+      print("hp가 ${maxHP - hp} 회복 되었습니다.");
       mp -= 5;
-      hp = maxHp;
+      hp = maxHP;
     }
   }
 
@@ -27,15 +27,15 @@ class Cleric {
     int summary = mp + charge;
     int recovery = 0;
 
-    if (summary >= maxMp) {
-      recovery = maxMp - mp;
-      mp = maxMp;
+    if (summary >= maxMP) {
+      recovery = maxMP - mp;
+      mp = maxMP;
     } else {
       recovery = charge;
       mp = summary;
     }
 
-    print("mp가 ${recovery} 회복 되었습니다.");
+    print("mp가 $recovery 회복 되었습니다.");
     return recovery;
   }
 }
