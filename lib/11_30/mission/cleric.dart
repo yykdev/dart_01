@@ -20,18 +20,22 @@ class Cleric {
     }
   }
 
-  void pray(int time) {
+  int pray(int time) {
     Random random = Random();
-    int charge = random.nextInt(time);
+    int charge = time + random.nextInt(3);
 
-    int temp = mp + charge;
+    int summary = mp + charge;
+    int recovery = 0;
 
-    if (temp >= maxMp) {
-      print("mp가 ${maxMp - mp} 회복 되었습니다.");
+    if (summary >= maxMp) {
+      recovery = maxMp - mp;
+      mp = maxMp;
     } else {
-      print("mp가 ${charge} 회복 되었습니다.");
+      recovery = charge;
+      mp = summary;
     }
 
-    mp = temp;
+    print("mp가 ${recovery} 회복 되었습니다.");
+    return recovery;
   }
 }
