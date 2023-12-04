@@ -14,7 +14,7 @@ void main() {
   Person seokBong = Person(name: "한석봉");
   Person gildong = Person(name: "홍길동");
 
-  List<Person> members = [seokBong, gildong];
+  List<Person> memberList = [seokBong, gildong];
 
-  for (var element in members) {print(element.name);}
+  for (final member in memberList) {print(member.name);}
 }
