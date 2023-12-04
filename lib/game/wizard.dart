@@ -1,9 +1,10 @@
 class Wizard {
   String name;
   int hp;
+  int mp;
   Wand? wand;
 
-  Wizard(this.name, this.hp, this.wand);
+  Wizard(this.name, this.hp, this.mp, this.wand);
 }
 
 class Wand {
