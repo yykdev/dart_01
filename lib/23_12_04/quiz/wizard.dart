@@ -1,14 +1,16 @@
 /*
 클래스 “Wizard (마법사)”, “Wand (지팡이)” 를 작성하시오. 마법사는 지팡이를 들 수 있습니다.
  */
-class Wizard {
-  String name;
-  int hp;
-  int mp;
-  Wand wand;
+import 'dart:math';
 
-  Wizard({required this.name, required this.hp, required this.mp, required this.wand}) {
-    if ( name.length < 3 ) {
+class Wizard {
+  String _name;
+  int _hp;
+  int _mp;
+  Wand _wand;
+
+  Wizard({required String name, required int hp, required int mp, required Wand wand}) : _name = name, _hp = hp, _mp = mp, _wand = wand {
+    if ( _name.length < 3 ) {
       throw Exception('마법사의 이름은 3글자 이상이어야 합니다.');
     }
 
@@ -20,19 +22,77 @@ class Wizard {
       throw Exception('마법사의 MP는 0 이상이어야 합니다.');
     }
   }
+
+  // 조회
+  void info() {
+    print('$_name / $_hp / $_mp');
+  }
+
+  // setter
+  void set name(String name) {
+    if (name.length < 3) {
+      throw Exception('마법사의 이름은 3글자 이상이어야 합니다.');
+    }
+    _name = name;
+  }
+
+  void set mp(int value) {
+    if (value < 0) {
+      throw Exception('마법사의 MP는 0 이상이어야 합니다.');
+    } else {
+      _mp = value;
+    }
+  }
+
+  void set hp(int value) {
+    if (value < 0) {
+      _hp = 0;
+    } else {
+      _hp = value;
+    }
+  }
+
+  void set wand(Wand? wand) {
+    if (wand == null) {
+      throw Exception('지팡이가 없으면 마법을 시전 할 수 없습니다.');
+    }
+    _wand = wand;
+  }
 }
 
 class Wand {
-  String name; // 이름
-  double power; // 마력
+  String _name; // 이름
+  double _power; // 마력
 
-  Wand({required this.name, required this.power}) {
+  Wand({required String name, required double power}) : _name = name, _power = power {
     if ( name.length < 3 ) {
       throw Exception('지팡이의 이름은 3글자 이상이어야 합니다.');
     }
 
     if ( power < 0.5 || power > 100 ) {
       throw Exception('지팡이의 마력은 0.5 이상 100.0 이하여야 합니다.');
+    }
+  }
+
+  // 조회
+  void info() {
+    print('$_name / $_power');
+  }
+
+  //setter
+  void set name(String name) {
+    if ( name.length < 3 ) {
+      throw Exception('지팡이의 이름은 3글자 이상이어야 합니다.');
+    } else {
+      _name = name;
+    }
+  }
+
+  void set power(double power) {
+    if ( power < 0.5 || power > 100 ) {
+      throw Exception('지팡이의 마력은 0.5 이상 100.0 이하여야 합니다.');
+    } else {
+      _power = power;
     }
   }
 }
@@ -50,8 +110,8 @@ class Wand {
 
 void main() {
   Wand wand = Wand(name: "마녀의 지팡이", power: 17.5);
-  print('${wand.name} - ${wand.power}');
+  wand.info();
 
   Wizard wizard = Wizard(name: "세상에 이런딜이", hp: 20, mp: 50, wand: wand);
-  print('${wizard.name} / ${wizard.hp} / ${wizard.mp} / ${wand.name}');
+  wizard.info();
 }
