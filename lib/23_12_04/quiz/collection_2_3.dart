@@ -22,7 +22,15 @@ void main() {
     seokBong.name: 25,
   };
 
+  // for + entries
   for(final member in memberMap.entries) {
     print('${member.key} ${member.value}');
   }
+  
+  print("====================");
+  
+  // foreach
+  memberMap.forEach((key, value) {
+    print('$key $value');
+  });
 }
