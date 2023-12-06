@@ -7,15 +7,20 @@
  */
 
 abstract class Asset {
+  String name;
+  int price;
 
+  Asset(this.name, this.price);
 }
 
 abstract class IntangibleAsset extends Asset {
 
+  IntangibleAsset(super.name, super.price);
 }
 
 class Patent extends IntangibleAsset {
 
+  Patent(super.name, super.price);
 }
 
 abstract interface class Thing {
@@ -25,11 +30,9 @@ abstract interface class Thing {
 }
 
 abstract class TangibleAsset extends Asset implements Thing {
-  String name;
-  int price;
   String color;
 
-  TangibleAsset(this.name, this.price, this.color);
+  TangibleAsset(super.name, super.price, this.color);
 }
 
 class Book extends TangibleAsset {
