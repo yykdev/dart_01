@@ -36,7 +36,7 @@ class PoisonSlime extends Slime {
 
   @override
   void attack(Hero hero) {
-    if ( attackPoint > 0 ) {
+    if (attackPoint > 0) {
       // 4-d 용사의 HP 의 1/5에 해당하는 포인트를 용사의 HP 로부터 감소시키고, “~포인트의 데미지" 라고 표시
       int damage = hero.hp ~/ 5;
       hero.hp -= damage;

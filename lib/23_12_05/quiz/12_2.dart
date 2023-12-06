@@ -10,25 +10,28 @@
 
 // 가
 abstract class Asset {
+  String name;
+  int price;
 
+  Asset(this.name, this.price);
 }
 
 // 나
 abstract class IntangibleAsset extends Asset {
 
+  IntangibleAsset(super.name, super.price);
 }
 
 // 다
 class Patent extends IntangibleAsset {
 
+  Patent(super.name, super.price);
 }
 
 abstract class TangibleAsset extends Asset {
-  String name;
-  int price;
   String color;
 
-  TangibleAsset(this.name, this.price, this.color);
+  TangibleAsset(super.name, super.price, this.color);
 }
 
 class Book extends TangibleAsset {
