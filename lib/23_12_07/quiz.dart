@@ -25,7 +25,7 @@ class Book implements Comparable<Book> {
   Book copyWith({
     String? title,
     String? comment,
-    String? publishDate,
+    DateTime? publishDate,
   }) {
     return Book(
         title: title ?? this.title,
@@ -80,4 +80,9 @@ void main() {
   print(pocketMon);
   pocketMon.sort((a, b) => -a.compareTo(b));
   print(pocketMon);
+
+  Book book3 = book1.copyWith(
+      title: 'Flutter 3', comment: '좋습니다.', publishDate: DateTime.now());
+  print(book1.hashCode);
+  print(book3.hashCode);
 }
