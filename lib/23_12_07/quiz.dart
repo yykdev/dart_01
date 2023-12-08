@@ -14,13 +14,13 @@ import 'package:intl/intl.dart';
 class Book implements Comparable<Book> {
   String title;
   String comment;
-  String publishDate;
+  DateTime publishDate;
 
   Book({
     required this.title,
     required this.comment,
-    publishDate,
-  }) : publishDate = DateFormat('yyyy-MM-dd').format(publishDate);
+    required this.publishDate,
+  });
 
   Book copyWith({
     String? title,
@@ -40,19 +40,22 @@ class Book implements Comparable<Book> {
       other is Book &&
           runtimeType == other.runtimeType &&
           title == other.title &&
-          publishDate == other.publishDate;
+          DateFormat('yyyy-MM-dd').format(publishDate) ==
+              DateFormat('yyyy-MM-dd').format(other.publishDate);
 
   @override
   int get hashCode => title.hashCode ^ publishDate.hashCode;
 
   @override
   int compareTo(Book other) {
-    return publishDate.compareTo(other.publishDate);
+    String currentFormat = DateFormat('yyyy-MM-dd').format(publishDate);
+    String otherFormat = DateFormat('yyyy-MM-dd').format(other.publishDate);
+    return currentFormat.compareTo(otherFormat);
   }
 
   @override
   String toString() {
-    return 'Book{title: $title, comment: $comment, publishDate: $publishDate}';
+    return 'Book{title: $title, comment: $comment, publishDate: ${DateFormat('yyyy-MM-dd').format(publishDate)}';
   }
 }
 
@@ -85,4 +88,7 @@ void main() {
       title: 'Flutter 3', comment: '좋습니다.', publishDate: DateTime.now());
   print(book1.hashCode);
   print(book3.hashCode);
+
+  print(book1);
+  print(book3);
 }
