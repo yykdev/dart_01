@@ -44,7 +44,8 @@ class Book implements Comparable<Book> {
               DateFormat('yyyy-MM-dd').format(other.publishDate);
 
   @override
-  int get hashCode => title.hashCode ^ publishDate.hashCode;
+  int get hashCode =>
+      title.hashCode ^ DateFormat('yyyy-MM-dd').format(publishDate).hashCode;
 
   @override
   int compareTo(Book other) {
