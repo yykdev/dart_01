@@ -9,33 +9,82 @@
 import 'dart:convert';
 import 'dart:io';
 
+// class Employee {
+//   String name;
+//   int age;
+//
+//   Employee(this.name, this.age);
+// }
+//
+// class Department {
+//   String name;
+//   Employee leader;
+//
+//   Department(this.name, this.leader);
+//
+//   Map<String, dynamic> toJson() => {
+//         'departmentName': name,
+//         'departmentLeader': {
+//           'leaderName': leader.name,
+//           'leaderAge': leader.age,
+//         }
+//       };
+// }
+
+// 직렬화, 역직렬화 반영한 로직 개선
 class Employee {
   String name;
   int age;
 
-  Employee(this.name, this.age);
+  Employee({required this.name, required this.age});
+
+  // 직렬화 member data => json
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'age': age,
+    };
+  }
+
+  // 역직렬화 json => member data
+  factory Employee.fromJson(Map<String, dynamic> map) {
+    return Employee(
+      name: map['name'],
+      age: map['age'],
+    );
+  }
 }
 
 class Department {
   String name;
   Employee leader;
 
-  Department(this.name, this.leader);
+  Department({required this.name, required this.leader});
 
-  Map<String, dynamic> toJson() => {
-        'departmentName': name,
-        'departmentLeader': {
-          'leaderName': leader.name,
-          'leaderAge': leader.age,
-        }
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'leader': leader.toJson(),
+    };
+  }
+
+  factory Department.fromJson(Map<String, dynamic> map) {
+    return Department(
+        name: map['name'], leader: Employee.fromJson(map['leader']));
+  }
 }
 
 void main() {
-  Employee hong = Employee("홍길동", 41);
-  Department hongDepartment = Department("총무부", hong);
-  String hongDepartmentString = jsonEncode(hongDepartment.toJson());
+  final hong = Employee(name: "홍길동", age: 41);
+  final department = Department(name: "총무부", leader: hong);
+  final encodeData = jsonEncode(department.toJson());
+  print(encodeData);
 
-  final departmentFile = File('lib/23_12_11/department.txt');
-  departmentFile.writeAsStringSync(hongDepartmentString);
+  final companyFile = File('lib/23_12_11/company.txt');
+  companyFile.writeAsStringSync(encodeData);
+
+  final readFile = companyFile.readAsStringSync();
+  final decodeData = jsonDecode(readFile);
+  final fromJson = Department.fromJson(decodeData);
+  print(fromJson.toJson());
 }
