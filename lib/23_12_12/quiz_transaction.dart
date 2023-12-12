@@ -80,11 +80,11 @@ void main() {
   final answer07 = transactions
       .map((e) => e.value)
       .reduce((value, element) => max(value, element));
-  print(answer07);
+  print('answer07 : $answer07}');
 
   // 8. 전체 트랜잭션 중 최소값은 얼마인가?
   final answer08 = transactions
       .map((e) => e.value)
       .reduce((value, element) => min(value, element));
-  print(answer08);
+  print('answer08 : $answer08}');
 }
