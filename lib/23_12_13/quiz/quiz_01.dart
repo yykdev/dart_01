@@ -14,7 +14,7 @@ final logger = Logger();
 
 Future<String> getSampleCSVData() async {
   try {
-    final sampleCSV = File('lib/23_12_13/sample.csv');
+    final sampleCSV = File('lib/23_12_13/quiz/sample.csv');
     final sampleCSVData = sampleCSV.readAsStringSync();
 
     return sampleCSVData;
@@ -30,7 +30,7 @@ Future<void> replaceCSVData({
 }) async {
   try {
     if (sampleCSVData.contains(oldText)) {
-      final copyCSV = File('lib/23_12_13/sample_copy.csv');
+      final copyCSV = File('lib/23_12_13/quiz/sample_copy.csv');
       final updateData = sampleCSVData.replaceAll(oldText, newText);
       copyCSV.writeAsStringSync(updateData);
 
@@ -43,8 +43,8 @@ Future<void> replaceCSVData({
   }
 }
 
-void main() {
-  getSampleCSVData()
+void main() async {
+  await getSampleCSVData()
       .then((value) =>
           replaceCSVData(oldText: '한석봉', newText: '김석봉', sampleCSVData: value))
       .catchError((e) => logger.e(e));
